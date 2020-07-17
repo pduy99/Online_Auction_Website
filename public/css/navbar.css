@@ -1,0 +1,98 @@
+.header-main {
+	position: relative;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.btn-facebook {
+	background-color: #405d9d;
+	color: #fff;
+}
+
+.btn-google {
+	background-color: #ff7575;
+	color: #fff;
+}
+
+.widget-header {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+
+.icontext {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	vertical-align: middle;
+}
+
+.widget-header i {
+	color: #969696;
+}
+
+.widget-header a {
+	color: #343a40;
+}
+
+.icon-sm {
+	width: 48px;
+	height: 48px;
+	line-height: 48px !important;
+	font-size: 20px;
+
+	display: inline-block;
+	text-align: center;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	-webkit-box-flex: 0;
+	-ms-flex-positive: 0;
+	flex-grow: 0;
+}
+
+.icontext .icon {
+	position: relative;
+	margin-right: 10px;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	-webkit-box-flex: 0;
+	-ms-flex-positive: 0;
+	flex-grow: 0;
+}
+
+.icontext .text {
+	width: 100%;
+	line-height: 1.2;
+	color: #212529;
+}
+
+.widget-header .notify {
+	position: absolute;
+	top: -3px;
+	right: -10px;
+}
+.notify {
+	position: absolute;
+	top: -4px;
+	right: -10px;
+	display: inline-block;
+	padding: 0.25em 0.6em;
+	font-size: 12px;
+	line-height: 1;
+	text-align: center;
+	border-radius: 3rem;
+	color: #fff;
+	background-color: #fa3434;
+}
+
+/* Hover sign in/sign out */
+.widget-header a:hover {
+	color: #3167eb;
+}
+
+a:hover {
+	text-decoration: none;
+}

@@ -1,0 +1,66 @@
+<div class="row px-5">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35 my-5">{{title}}</h3>
+        <div class="table-responsive table-responsive-data2">
+            <form method="post" class="w-75">
+                <div class="row">
+                    <div class="col-2">
+                        Tên:
+                    </div>
+                    <input class="pl-1 w-25" type="text" name="firstname" placeholder="Vd: John" value="{{#each User}}{{firstname}}{{/each}}"
+                        autofocus>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        Họ:
+                    </div>
+                    <input class="pl-1 w-25" type="text" name="lastname" placeholder="Vd: Wick" value="{{#each User}}{{lastname}}{{/each}}">
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        Tên tài khoản:
+                    </div>
+                    <input class="pl-1 w-25" type="text" name="username" placeholder="Vd: johnwick1969"
+                        value="{{#each User}}{{username}}{{/each}}">
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        Mật khẩu:
+                    </div>
+                    <input class="pl-1 w-25" type="text" name="password" placeholder="Vd: JhnWck123"
+                        value="{{#each User}}{{password}}{{/each}}">
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        Email:
+                    </div>
+                    <input class="pl-1 w-25" type="email" name="email" placeholder="Vd: jw6969@gmail.com"
+                        value="{{#each User}}{{email}}{{/each}}">
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        Địa chỉ:
+                    </div>
+                    <input class="pl-1 w-25" type="text" name="address" placeholder="Vd: 227 Nguyen Van Cu, Q5, TP. HCM"
+                        value="{{#each User}}{{address}}{{/each}}">
+                </div>
+                <div class="row">
+                    {{!-- <input class="pl-1 w-25" type="text" name="cat_name" placeholder="Vai trò" value="role"> --}}
+                    <div class="col-2">
+                        Vai trò:
+                    </div>
+                    <select name="role">
+                        <option value="0" {{#unless role}} selected {{/unless}}>Người đấu giá</option>
+                        <option value="1" {{#if role}} selected {{/if}}>Người bán</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <input type="submit" name="addU" value="Xác nhận">
+                </div>
+            </form>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>

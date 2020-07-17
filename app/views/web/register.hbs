@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>Login Page</title>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="/vendors/css/bootstrap.min.css" />
+
+    <!-- Font awesome 5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-0c38nfCMzF8w8DBI+9nTWzApOpr1z0WuyswL4y6x/2ZTtmj/Ki5TedKeUcFusC/k" crossorigin="anonymous" />
+
+    <!-- Font awesome 4 -->
+    <link rel="stylesheet" href="/vendors/css/font-awesome.min.css">
+    <link href="/css/register/register.css" rel="stylesheet" type="text/css" />
+
+    <!-- jQuery Plugins -->
+    <script src="/vendors/js/jquery.min.js"></script>
+    <script src="/vendors/js/bootstrap.min.js"></script>
+
+    <!-- SweetAlert2-->
+    <script src="/js/sweetalert2.all.min.js"></script>
+
+</head>
+
+<body style="background-image: url('/img/bg-login.webp');background-size: cover;">
+    <!-- =========================  CONTENT ========================= -->
+
+    <div class="container">
+
+        <div class="signup-form">
+            <form action="/auth/register" method="post">
+                <h2>Tạo tài khoản</h2>
+                <p class="hint-text">Vui lòng điền đầy đủ thông tin dưới đây</p>
+                {{#if hasErrors}}
+                <div class="alert alert-danger alert-dismissible  show rounded-pill" role="alert">
+                    {{#each messages}}
+                    <strong>Có lỗi !</strong> {{this}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{/each}}
+                </div>
+                {{/if}}
+
+
+                <div class="or-seperator"><b>P</b></div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" name="username" placeholder="Username"
+                        required="required" value="{{dataForm.username}}">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 " style="padding: 0; padding-right: 5px;">
+                        <input type="text" class="form-control input-lg" name="firstname" placeholder="Họ"
+                            required="required" value="{{dataForm.firstname}}">
+                    </div>
+                    <div class="form-group col-md-6 " style="padding: 0;">
+                        <input type="text" class="form-control input-lg" name="lastname" placeholder="Tên"
+                            required="required" value="{{dataForm.lastname}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" class="form-control input-lg" name="email" placeholder="Email "
+                        required="required" value="{{dataForm.email}}">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" name="address" placeholder="Địa chỉ"
+                        required="required" value="{{dataForm.address}}">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control input-lg" name="password" placeholder="Password"
+                        required="required" value="{{dataForm.password}}">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control input-lg" name="confirm_password"
+                        placeholder="Nhập lại Password" required="required">
+                </div>
+                <div class="form-group">
+                    <div name="captcha" class="g-recaptcha" data-sitekey="6LfYK8cUAAAAAJQAA3u6dP0Qc28Ynzic8BxbdHoV">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Đăng kí</button>
+                </div>
+            </form>
+            <div class="text-center ">
+                <p style="color:aliceblue;display:inline">Bạn đã có tài khoản? </p> <a href="/auth/login">Đăng nhập ngay
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{#if showMailOTP}}
+    <script>
+        (async () => {
+            const { value: otp } = await Swal.fire({
+                title: 'Check your mail and enter an OTP here to activate your account',
+                html: `<form action = "/auth/mailotp" method = "post">
+                    {{#if OTPFailed}}
+                    <div class="alert alert-danger alert-dismissible  show rounded-pill" role="alert">
+                        <strong>Wrong OTP</strong>
+                    </div>
+                    {{/if}}
+                   <div class="form-group">
+                    <input type="text" class="form-control input-lg" name="email" placeholder="Email" readonly="readonly"
+                         value="{{email}}"">
+                </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" name="otp" 
+                            placeholder="OTP" required="required">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">OK</button>
+                    </div>
+                    </form>`,
+                showCancelButton: false,
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'You need to write something!'
+                    }
+                }
+            })
+
+        })()
+    </script>
+    {{/if}}
+
+
+    {{#if registerSuccess}}
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Register successfully'
+        })
+        var timer = setTimeout(function () {
+            window.location = '/auth/login'
+        }, 3000);
+    </script>
+    {{/if}}
+    <!-- =========================  CONTENT END// ========================= -->
+</body>
+
+</html>

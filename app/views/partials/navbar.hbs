@@ -1,0 +1,62 @@
+<!-- NAVIGATION -->
+<div id="navigation">
+    <!-- container -->
+    <div class="container">
+        <div id="responsive-nav">
+            <!-- category nav -->
+            <div class="category-nav show-on-click">
+                <span class="category-header">Danh Sách <i class="fa fa-list"></i></span>
+                <ul class="category-list">
+                    {{#each Cat}}
+                    {{#if hasChildCates}}
+                    <li class="dropdown side-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{cat_name}}<i
+                                class="fa fa-angle-right"></i></a>
+                        <div class="custom-menu" style="width:50px">
+                            <ul class="list-links">
+                                {{#each childCates}}
+                                <li><a href="/product/search?q=&selcat={{id}}">{{protype_name}}</a></li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </li>
+                    {{else}}
+                    <li><a href="#">{{cat_name}}</a></li>
+                    {{/if}}
+
+                    {{/each}}
+                    {{#each PTNotParent}}
+                    <li><a href="/product/search?q=&selcat={{id}}">{{protype_name}}</a></li>
+                    {{/each}}
+
+
+                </ul>
+            </div>
+            <!-- /category nav -->
+
+            <!-- menu nav -->
+            <div class="menu-nav">
+                <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                <ul class="menu-list">
+                    <li><a href="#">TRANG CHỦ</a></li>
+                    <li><a href="#">VỀ TÔI</a></li>
+                    <li><a href="#">LIÊN HỆ</a></li>
+                    {{#if isSeller}}
+                    <li><a href="/seller/post">Đăng sản phẩm</a></li>
+                    {{!-- <li><a href="/seller/myproduct">Sản phẩm của tôi</a></li> --}}
+                    <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="true">Sản phẩm của tôi <i class="fa fa-caret-down"></i></a>
+                        <ul class="custom-menu">
+                            <li><a href="/seller/myproduct">Đang đăng & còn hạn</a></li>
+                            <li><a href="/seller/mydoneproduct">Đã có người thắng</a></li>
+                        </ul>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+            <!-- menu nav -->
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<!-- /NAVIGATION -->

@@ -1,0 +1,81 @@
+{{#section 'WYSIWYG'}}
+<script
+    src="https://cdn.tiny.cloud/1/1t7sjbqh4n4m6d0kfprkd597forfz9bt36w9h0vhmd24hxag/tinymce/5/tinymce.min.js"></script>
+<script src="/js/seller/tinyMCESetup.js"></script>
+{{/section}}
+
+{{#section 'BID_UTILS'}}
+<script src="/js/bidder/bidder.utils.js"></script>
+<script src="/js/seller/seller.utils.js"></script>
+{{/section}}
+
+
+<div class="container" style="margin-bottom:40px">
+
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Bidder</a></li>
+                <li class="active">My Bid </li>
+            </ul>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-12">
+            <tr class="order-summary clearfix">
+                <div class="section-title">
+                    <h3 class="title">Các sản phẩm đang tham gia đấu giá</h3>
+                </div>
+                <table class="shopping-cart-table table">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th></th>
+                            <th class="text-center">Giá hiện tại</th>
+                            <th class="text-center">Giá cao nhất đã ra</th>
+                            <th class="text-center">Người thắng hiện tại</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each myProducts}}
+                        <tr>
+                            <td class="thumb"><img src="/img/sp/{{id}}.jpg" alt=""></td>
+                            <td class="details" style="width:30%">
+                                <a href="/product/productdetail/{{id}}">{{product_name}}</a>
+                                <ul>
+                                    <li><span>Giá khởi tạo: {{initial_price}} K</span></li>
+                                    <li><span>Giá mua ngay: {{imme_buy_price}} K</span></li>
+                                </ul>
+                            </td>
+                            <td class="price text-center"><strong class="primary-color">{{curr_price}} K</strong>
+                            </td>
+                            <td class="total text-center"><strong>{{price}} K</strong></td>
+                            <td class="price text-center">
+                                {{#if isMyWinPro}}
+                                <strong>Tôi</strong>
+                                {{else}}
+                                <strong>{{tempWinnerName}}</strong>
+                                {{/if}}
+
+                            </td>
+
+
+                        </tr>
+
+                        {{/each}}
+                    </tbody>
+
+
+
+                </table>
+
+        </div>
+
+    </div>
+
+
+</div>
+<!-- /row -->
+</div>
+<!-- /container -->

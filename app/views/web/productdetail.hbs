@@ -1,0 +1,757 @@
+{{#section 'style'}}
+<link href="/css/card.css" rel="stylesheet" type="text/css">
+<script src="/js/util.js"></script>
+{{/section}}
+
+{{#section 'WATCHLIST'}}
+<script src="/js/watchlist.utils.js"></script>
+{{/section}}
+
+{{#section 'BID_UTILS'}}
+<script src="/js/bidder/bidder.utils.js"></script>
+<script src="/js/seller/seller.utils.js"></script>
+{{/section}}
+
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!--  Product Details -->
+			<div class="product product-details clearfix">
+				{{#if isBidder}}
+				{{#each Pro}}
+				<div class="col-md-6">
+					<div id="product-main-view">
+						<div class="product-view">
+							<img src="/img/sp/{{id}}.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-1.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-2.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-3.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+					</div>
+					<div id="product-view">
+						<div class="product-view">
+							<img src="/img/sp/{{id}}.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-1.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-2.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-3.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="product-body">
+
+						{{!-- <div class="product-label">
+							<span>New</span>
+							<span class="sale">-20%</span>
+						</div> --}}
+						<h2 class="product-name">{{product_name}}</h2>
+
+						<div>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+						</div>
+
+
+						{{/each}}
+						<dl class="row" style="margin-left: 10px;margin-bottom: 20px;">
+							{{#each Seller}}
+							<dt class="col-sm-4">Người bán :</dt>
+							<dd class="col-sm-4">{{firstname}} {{lastname}}</dd>
+							<dd class="col-sm-4"><button href="#" class="btn btn-primary ratebtn">{{rating}}
+									%</button></dd>
+							{{/each}}
+
+							{{#each HiggestBidder}}
+							<dt class="col-sm-4">Người thắng hiện tại :</dt>
+							<dd class="col-sm-4">{{firstname}} {{lastname}}</dd>
+							<dd class="col-sm-4"><button href="#" class="btn btn-primary ratebtn">{{rating}}
+									%</button></dd>
+							{{/each}}
+
+							{{#each Pro}}
+							<dt class="col-sm-4">Giá mua ngay :</dt>
+							<dd class="col-sm-8">
+								<button href="#" class="btn btn-primary ratebtn buynow clickbuy"
+									pro-id="{{id}}">{{imme_buy_price}}
+									K</button>
+							</dd>
+							<dt class="col-sm-4">Ngày đăng :</dt>
+							<dd class="col-sm-8" id="timee{{id}}" start_date={{start_date}}>
+								<script>
+									transferDateFormat2(`{{start_date}}`, {{ id }});
+								</script>
+							</dd>
+							<dt class="col-sm-4">Ngày hết hạn :</dt>
+							<dd class="col-sm-8	" id="timeee{{id}}" expriry_date={{expriry_date}}>
+								<script>
+									transferDateFormat3(`{{expriry_date}}`, {{ id }});
+								</script>
+							</dd>
+						</dl>
+						<div class="timer " id=time{{id}} style="margin-top: 20px;" expriry_date={{expriry_date}}>
+
+							<script>
+								countDownTimer1(`{{ expriry_date }}`, {{ id }});
+							</script>
+
+						</div>
+						{{!-- Sản phẩm kết thúc r thì không hiện ra ô đấu giá --}}
+						{{#if isExprired}}
+						<div class="product-options">
+
+							<div class="product-btns" id="buttonbid" isBidder="{{isBidder}}" isSeller="{{isSeller}}">
+								<h4> Giá cuối cùng :</h4>
+								<div style="display:flex">
+
+									<div class="input-group" style="margin-right: 30px">
+
+										<span class="product-label">
+											<span class="sale text-center" style="font-size: 30px;">{{curr_price}}
+												K</span>
+										</span>
+										<script>
+
+											input = document.getElementsByClassName('input-number')[0];
+											a = {{ curr_price }};
+											console.log(">>>>>>>>>> ", input);
+											if (input !== undefined) {
+												if (a == 0) {
+													input.value = (parseInt({{ initial_price }}) + ' K');
+											};
+											};
+
+
+										</script>
+									</div>
+								</div>
+								<p></p>
+								<p></p>
+								{{!-- <div class="alert alert-success" role="alert"> <i
+										class="fas fa-exclamation-triangle"></i> Hãy
+									đăng nhập với tư cách Bidder
+									để thực hiện chức năng này</div> --}}
+
+							</div>
+
+						</div>
+						{{else}}
+						<div class="product-options">
+
+							<div class="product-btns" id="buttonbid" isBidder="{{isBidder}}" isSeller="{{isSeller}}">
+								<h4>Ra giá :</h4>
+								<div style="display:flex">
+
+									<div class="input-group" style="margin-right: 30px">
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-danger btn-number" data-type="minus"
+												data-field="quant[2]">
+												<i class="fa fa-minus"></i>
+											</button>
+										</span>
+										<input style="width: 110px;" type="text" name="quant[2]"
+											class="form-control input-number" value="" min="{{initial_price}} "
+											max="100000000" step_cost="{{step_cost}}">
+										<script>
+											input = document.getElementsByClassName('input-number')[0];
+											if ({{ curr_price }} == 0) {
+												input.value = (parseInt({{ initial_price }}) + ' K');
+											input.setAttribute('min', parseInt({{ initial_price }}));
+											}
+											else {
+												input.value = (parseInt({{ curr_price }}) + parseInt({{ step_cost }})) + ' K';
+											input.setAttribute('min', (parseInt({{ curr_price }}) + parseInt({{ step_cost }})));
+											}
+
+										</script>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-success btn-number" data-type="plus"
+												data-field="quant[2]">
+												<i class="fa fa-plus"></i>
+											</button>
+										</span>
+									</div>
+									<button pro-id="{{id}}" type="button" class="primary-btn add-to-cart"
+										style="margin-right: 180px"><i class="fa fa-shopping-cart"></i> Đấu giá
+									</button>
+									<i class="fa fa-heart main-btn icon-btn pull-right" onclick="actOnPro(event);"
+										data-pro-id="{{id}}" data-islike="false">
+									</i>
+								</div>
+								<button class="main-btn icon-btn" style="width: auto; padding:0 10px; margin-top: 20px"
+									type="button" data-toggle="collapse" data-target="#{{id}}" aria-expanded="false"
+									aria-controls="collapseExample">
+									ĐẤU GIÁ TỰ ĐỘNG
+								</button>
+								{{!-- -- DATA ĐẤU GIÁ TỰ ĐỘNG ---- --}}
+								<tr>
+									<td colspan="6" class="hiddenRow product-tab">
+										<div class="accordian-body collapse" id="{{id}}">
+											<div class="col-md-7 pull-left" style="margin:20px 0">
+												<h4>MỜI NHẬP GIÁ TỐI ĐA</h4>
+												<input type="number" id="giatoida"> (* Giá >= {{initial_price}})
+											</div>
+										</div>
+									</td>
+								</tr>
+								{{!-- -- DATA ĐẤU GIÁ TỰ ĐỘNG ---- --}}
+							</div>
+						</div>
+						{{/if}}
+
+
+					</div>
+				</div>
+				{{/each}}
+
+
+				{{else}}
+				{{#if isOwner}}
+				{{#each Pro}}
+				<div class="col-md-6">
+					<div id="product-main-view">
+						<div class="product-view">
+							<img src="/img/sp/{{id}}.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-1.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-2.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-3.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+					</div>
+					<div id="product-view">
+						<div class="product-view">
+							<img src="/img/sp/{{id}}.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-1.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-2.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-3.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="product-body">
+
+						{{!-- <div class="product-label">
+							<span>New</span>
+							<span class="sale">-20%</span>
+						</div> --}}
+						<h2 class="product-name">{{product_name}}</h2>
+
+						<div>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+						</div>
+
+
+						{{/each}}
+						<dl class="row" style="margin-left: 10px;margin-bottom: 20px;">
+							{{#each Seller}}
+							<dt class="col-sm-4">Người bán :</dt>
+							<dd class="col-sm-4">{{firstname}} {{lastname}}</dd>
+							<dd class="col-sm-4"><button href="#" class="btn btn-primary ratebtn">{{rating}}
+									%</button></dd>
+							{{/each}}
+
+							{{#each HiggestBidder}}
+							<dt class="col-sm-4">Người thắng hiện tại :</dt>
+							<dd class="col-sm-4">{{firstname}} {{lastname}}</dd>
+							<dd class="col-sm-4"><button href="#" class="btn btn-primary ratebtn">{{rating}}
+									%</button></dd>
+							{{/each}}
+
+							{{#each Pro}}
+							<dt class="col-sm-4">Giá mua ngay :</dt>
+							<dd class="col-sm-8"><button href="#"
+									class="btn btn-primary ratebtn buynow">{{imme_buy_price}}
+									K</button></dd>
+							<dt class="col-sm-4">Ngày đăng :</dt>
+							<dd class="col-sm-8" id="timee{{id}}" start_date={{start_date}}>
+								<script>
+									transferDateFormat2(`{{start_date}}`, {{ id }});
+								</script>
+							</dd>
+							<dt class="col-sm-4">Ngày hết hạn :</dt>
+							<dd class="col-sm-8	" id="timeee{{id}}" expriry_date={{expriry_date}}>
+								<script>
+									transferDateFormat3(`{{expriry_date}}`, {{ id }});
+								</script>
+							</dd>
+						</dl>
+						<div class="timer " id=time{{id}} style="margin-top: 20px;" expriry_date={{expriry_date}}>
+
+							<script>
+								countDownTimer1(`{{ expriry_date }}`, {{ id }});
+							</script>
+
+						</div>
+						{{!-- Sản phẩm kết thúc r thì không hiện ra ô đấu giá --}}
+
+						<div class="product-options">
+
+							<div class="product-btns" id="buttonbid" isBidder="{{isBidder}}" isSeller="{{isSeller}}">
+								{{#if isExprired}}
+								<h4> Giá cuối cùng :</h4>
+								{{else}}
+								<h4> Giá hiện tại :</h4>
+								{{/if}}
+
+								<div style="display:flex">
+
+									<div class="input-group" style="margin-right: 30px">
+
+										<span class="product-label">
+											<span class="sale text-center" style="font-size: 30px;">{{curr_price}}
+												K</span>
+										</span>
+										<script>
+											input = document.getElementsByClassName('input-number')[0];
+											if ({{ curr_price }} == 0) {
+												input.value = (parseInt({{ initial_price }}) + ' K');
+											
+											}
+										</script>
+									</div>
+								</div>
+								<p></p>
+								<p></p>
+								<div class="alert alert-success" role="alert"> <i
+										class="fas fa-exclamation-triangle"></i> Bạn là seller của sản phẩm này !</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{/each}}
+				{{else}}
+				{{#each Pro}}
+				<div class="col-md-6">
+					<div id="product-main-view">
+						<div class="product-view">
+							<img src="/img/sp/{{id}}.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-1.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-2.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-3.jpg" alt="" style="width: 600px;height:500px;">
+						</div>
+					</div>
+					<div id="product-view">
+						<div class="product-view">
+							<img src="/img/sp/{{id}}.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-1.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-2.jpg" alt="">
+						</div>
+						<div class="product-view">
+							<img src="/img/sp/{{id}}-3.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="product-body">
+
+						{{!-- <div class="product-label">
+							<span>New</span>
+							<span class="sale">-20%</span>
+						</div> --}}
+						<h2 class="product-name">{{product_name}}</h2>
+
+						<div>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+						</div>
+
+
+						{{/each}}
+						<dl class="row" style="margin-left: 10px;margin-bottom: 20px;">
+							{{#each Seller}}
+							<dt class="col-sm-4">Người bán :</dt>
+							<dd class="col-sm-4">{{firstname}} {{lastname}}</dd>
+							<dd class="col-sm-4"><button href="#" class="btn btn-primary ratebtn">{{rating}}
+									%</button></dd>
+							{{/each}}
+
+							{{#each HiggestBidder}}
+							<dt class="col-sm-4">Người thắng hiện tại :</dt>
+							<dd class="col-sm-4">{{firstname}} {{lastname}}</dd>
+							<dd class="col-sm-4"><button href="#" class="btn btn-primary ratebtn ">{{rating}}
+									%</button></dd>
+							{{/each}}
+
+							{{#each Pro}}
+
+							<dt class="col-sm-4">Ngày đăng :</dt>
+							<dd class="col-sm-8" id="timee{{id}}" start_date={{start_date}}>
+								<script>
+									transferDateFormat2(`{{start_date}}`, {{ id }});
+								</script>
+							</dd>
+							<dt class="col-sm-4">Ngày hết hạn :</dt>
+							<dd class="col-sm-8	" id="timeee{{id}}" expriry_date={{expriry_date}}>
+								<script>
+									transferDateFormat3(`{{expriry_date}}`, {{ id }});
+								</script>
+							</dd>
+							<dt class="col-sm-4">Giá mua ngay :</dt>
+							<dd class="col-sm-8"><button href="#" class="btn btn-primary ratebtn buynow"
+									onclick="">{{imme_buy_price}}
+									K</button></dd>
+						</dl>
+						<div class="timer " id=time{{id}} style="margin-top: 20px;" expriry_date={{expriry_date}}>
+
+							<script>
+								countDownTimer1(`{{ expriry_date }}`, {{ id }});
+							</script>
+
+						</div>
+						{{!-- Sản phẩm kết thúc r thì không hiện ra ô đấu giá --}}
+
+						<div class="product-options">
+
+							<div class="product-btns" id="buttonbid" isBidder="{{isBidder}}" isSeller="{{isSeller}}">
+								{{#if isExprired}}
+								<h4> Giá cuối cùng :</h4>
+								{{else}}
+								<h4> Giá hiện tại :</h4>
+								{{/if}}
+
+								<div style="display:flex">
+
+									<div class="input-group" style="margin-right: 30px">
+
+										<span class="product-label">
+											<span class="sale text-center" style="font-size: 30px;">{{curr_price}}
+												K</span>
+										</span>
+										<script>
+											input = document.getElementsByClassName('input-number')[0];
+											a = {{ curr_price }};
+											if (input !== undefined) {
+												if (a
+													== 0) {
+													input.value = (parseInt({{ initial_price }}) + ' K');
+
+											}
+											}
+
+										</script>
+									</div>
+								</div>
+								<p></p>
+								<p></p>
+								<div class="alert alert-success" role="alert"> <i
+										class="fas fa-exclamation-triangle"></i> Hãy đăng nhập với tư cách bidder để
+									được ra giá sản phẩm này !</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{/each}}
+				{{/if}}
+
+				{{/if}}
+
+
+
+
+
+				<div class="col-md-12">
+					<div class="product-tab">
+						<ul class="tab-nav">
+							<li class="active"><a data-toggle="tab" href="#tab1">Lịch sử đấu giá</a></li>
+
+							<li><a data-toggle="tab" href="#tab4">Chi tiết sản phẩm</a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="tab1" class="tab-pane fade in active">
+								{{#if isOwner}}
+								<table class="shopping-cart-table table table-striped"
+									style="width: 90%;margin-left: 40px;">
+									<thead>
+										<tr>
+											<th>Người đấu giá</th>
+
+											<th class="text-center">Giá</th>
+											<th class="text-center">Ngày giờ</th>
+											<th class="text-center">Điểm đánh giá</th>
+											<th class="text-right"></th>
+										</tr>
+									</thead>
+									<tbody>
+										{{#each HistoryBid}}
+										<tr class="historyrow">
+											{{#if isTop}}
+											<td><i class="fas fa-trophy"></i> &nbsp******{{lastname}}</td>
+											{{else}}
+											<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp******{{lastname}}</td>
+											{{/if}}
+
+											<td class="price text-center"><strong>{{price}} </strong>K</td>
+
+											<td class="qty text-center" id="{{price}}Time">
+												<script>
+
+													d = new Date('{{ time }}');
+													document.getElementById('{{ price }}Time').innerHTML = d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+
+												</script>
+											</td>
+											<td class="total text-center"><strong class="primary-color">32.50 %</strong>
+											</td>
+											<td class="text-right">
+												<button id="{{id}}btn_cancel" bidderId="{{userId}}"
+													proId="{{productId}}" class="main-btn icon-btn"
+													style="width: auto; padding:0 10px" type="button"
+													onclick="cancelBid({{userId}},{{productId}},{{price}});">
+													<i class="fas fa-edit"></i>
+													Cancel This Bid
+												</button>
+
+
+											</td>
+
+										</tr>
+
+										{{/each}}
+									</tbody>
+								</table>
+								{{else}}
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>Người đấu giá</th>
+											<th>Ngày giờ</th>
+											<th>Giá</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										{{#each HistoryBid}}
+										<tr class="historyrow">
+
+											{{#if isTop}}
+											<td><i class="fas fa-trophy"></i> &nbsp******{{lastname}}</td>
+											{{else}}
+											<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp******{{lastname}}</td>
+											{{/if}}
+
+											<td id="{{price}}Time">
+												<script>
+													d = new Date('{{ time }}');
+													document.getElementById('{{ price }}Time').innerHTML = d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+												</script>
+											</td>
+											<td>{{price}} K</td>
+										</tr>
+										{{/each}}
+									</tbody>
+								</table>
+
+								{{/if}}
+								<ul class="store-pages" id="historypage">
+									<li><span class="text-uppercase">No :</span></li>
+									{{!-- <li class="active">1</li>
+											<li><a href="#">2</a></li>
+											<li><a href="#">3</a></li>
+											<li><a href="#"><i class="fa fa-caret-right"></i></a></li> --}}
+								</ul>
+							</div>
+							<div id="tab2" class="tab-pane fade in">
+								{{#each HiggestBidder}}
+								<div class="single-review">
+									<div class="review-heading">
+										<div><a href="#"><i class="fa fa-user-o"></i> {{lastname}}</a></div>
+										<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
+										<div><a href="#"><i class="fa fa-clock-o"></i> {{price}}</a></div>
+										<div class="review-rating pull-right">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o empty"></i>
+										</div>
+									</div>
+									<div class="review-body">
+										<p>GIA CAO NHAT :{{price}} </p>
+										<p><strong>Point: </strong> 9 </p>
+									</div>
+								</div>
+								{{/each}}
+							</div>
+							<div id="tab4" class="tab-pane fade in">
+								{{#each Pro}}
+
+								{{{description}}}
+
+								{{/each}}
+
+							</div>
+							<script>
+							</script>
+							<div id="tab5" class="tab-pane fade in ">
+								<div class="single-review">
+									<div class="review-heading">
+										<div><a href="#"><i class="fa fa-user-o"></i> Seller</a></div>
+										<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
+										<div class="review-rating pull-right">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o empty"></i>
+										</div>
+									</div>
+									<div class="review-body">
+										<p>THONG TIN NGUOI BAN DAT O DAY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+										<p><strong>Point: </strong> 9 </p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- /Product Details -->
+
+
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->
+
+<div class="section">
+	<!-- container -->
+
+	<div class="container">
+		<!-- row -->
+		<div class="section-title">
+			<h2 class="title">Sản phẩm liên quan</h2>
+			<div class="pull-right">
+				<div class="product-slick-dots-1 custom-dots"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div id="product-slick-1" class="product-slick">
+				{{#each ProRelate}}
+				<!-- Product Single -->
+				<div class="product product-single">
+					<div class="product-thumb">
+						<div class="product-label">
+
+							<span id="time{{id}}NEARLYENDED" start_date="{{start_date}}">
+								<script>
+									transferDateFormat(`{{start_date}}`, `time{{id}}NEARLYENDED`);
+								</script>
+							</span>
+							{{!-- <span class="sale text-center">New</span> --}}
+						</div>
+						<ul class="product-countdown" id="{{id}}NEARLYENDED" expriry_date="{{expriry_date}}">
+							<script>
+
+								countDownTimer(`{{ expriry_date }}`, `{{ id }}NEARLYENDED`);
+							</script>
+						</ul>
+
+						<a href="/product/productdetail/{{id}}" class=" main-btn quick-view">Chi tiết</a>
+						<img src="/img/sp/{{id}}.jpg" alt="" width="263" height="263">
+					</div>
+					<div class="product-body">
+
+						<p class="align-self-end ">
+							Giá hiện tại:
+						</p>
+
+						<h3 class="product-price">{{curr_price}} K</h3>
+						<div class="product-rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star-o empty"></i>
+						</div>
+						<h2 class="product-name"><a href="#">{{product_name}}</a></h2>
+						<div class="">
+							<p>
+								<i class="fas fa-gavel text-info"></i> </i>
+								{{countBidders}} lượt
+								<span>&nbsp;&nbsp;</span>
+								{{#if isWinned}}
+								<i class="fas fa-trophy " style="margin-left: 10px; color:grey;"></i>
+								{{winnerName}}
+
+								{{/if}}
+							</p>
+							<p>Mua ngay: <strong>{{imme_buy_price}} K</strong></p>
+						</div>
+						<div class="product-btns">
+
+							<i class="fa fa-heart main-btn icon-btn" onclick="actOnPro(event);" data-pro-id="{{id}}"
+								data-islike="false">
+							</i>
+
+							<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>&nbsp
+								Ra giá</button>
+						</div>
+					</div>
+				</div>
+				<!-- /Product Single -->
+				{{/each}}
+			</div>
+		</div>
+	</div>
+	<!-- /Product Slick -->
+</div>
+{{!-- row --}}
+</div>
+<!-- /container -->
+</div>
+<!-- /section -->

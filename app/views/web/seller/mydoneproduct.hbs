@@ -1,0 +1,139 @@
+{{#section 'WYSIWYG'}}
+<script
+    src="https://cdn.tiny.cloud/1/1t7sjbqh4n4m6d0kfprkd597forfz9bt36w9h0vhmd24hxag/tinymce/5/tinymce.min.js"></script>
+<script src="/js/seller/tinyMCESetup.js"></script>
+{{/section}}
+
+{{#section 'BID_UTILS'}}
+<script src="/js/bidder/bidder.utils.js"></script>
+<script src="/js/seller/seller.utils.js"></script>
+{{/section}}
+
+
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <tr class="order-summary clearfix">
+                    <div class="section-title">
+                        <h3 class="title">Các sản phẩm đã có người thắng</h3>
+                    </div>
+                    <table class="shopping-cart-table table">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th></th>
+                                <th class="text-center">Giá cao nhất</th>
+                                <th class="text-center">Người chiến thắng</th>
+                                <th class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each myProducts}}
+                            <tr>
+                                <td class="thumb"><img src="/img/sp/{{id}}.jpg" alt=""></td>
+                                <td class="details" style="width:30%">
+                                    <a href="#">{{product_name}}</a>
+                                    <ul>
+                                        <li><span>Giá khởi tạo: {{initial_price}}</span></li>
+                                        <li><span>Giá mua ngay: {{imme_buy_price}}</span></li>
+                                    </ul>
+                                </td>
+                                <td class="price text-center"><strong class="primary-color">{{curr_price}}</strong></td>
+                                <td class="total text-center"><strong>{{winnerName}}</strong></td>
+                                {{!-- <td class="text-right"><button class="main-btn icon-btn"><i
+                                            class="fa fa-close"></i></button></td> --}}
+                                <td class="text-right">
+                                    <button class="main-btn icon-btn" style="width: auto; padding:0 10px" type="button"
+                                        data-toggle="collapse" data-target="#{{id}}" aria-expanded="false"
+                                        aria-controls="collapseExample"><i class="fas fa-edit"></i>
+                                        Rating
+                                    </button>
+
+                                    <button class="primary-btn" onclick="removeDeal({{winnerId}},{{id}});"><i
+                                            class="fas fa-times"></i>
+                                        Remove</button>
+
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="6" class="hiddenRow product-tab">
+                                    <div class="accordian-body collapse" id="{{id}}">
+                                        <div class="col-md-7 pull-right" style="margin:20px 0">
+                                            <p>(*Được phép đánh giá người thắng :thumbsup: (+1) hoặc :thumbsdown: (-1),
+                                                gửi kèm 1 đoạn nhận xét) </p>
+                                            <p>(*Được phép huỷ giao dịch và tự động :thumbsdown: (-1) người thắng đấu
+                                                giá. Trong trường hợp này, đoạn nhận xét có nội dung: Người thắng không
+                                                thanh toán.)</p>
+                                            <form class="review-form" action="/seller/rating/{{winnerId}}"
+                                                method="POST">
+                                                <div class="form-group">
+                                                    <div class="input-rating" style="display: flex;">
+                                                        <strong style="margin-right: 30px;">Your
+                                                            Rating: </strong>
+                                                        <div class="form-check" style="margin-right: 30px;">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" id="star5" name="rating"
+                                                                    value="1"><label for="star5"></label>
+
+                                                                <img alt=":thumbsup:" class="emoji" style="width: 30px;"
+                                                                    src="https://hackmd.io/build/emojify.js/dist/images/basic/thumbsup.png"
+                                                                    title="like">
+                                                                <span>(+1)</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" id="star5" name="rating"
+                                                                    value="0"><label for="star5"></label>
+
+                                                                <img alt=":thumbsdown:" class="emoji"
+                                                                    style="width: 35px;"
+                                                                    src="https://hackmd.io/build/emojify.js/dist/images/basic/thumbsdown.png"
+                                                                    title="unlike">
+                                                                <span>(-1)</span>
+                                                            </label>
+                                                        </div>
+
+
+
+                                                        {{!-- <i
+                                                            class="far fa-thumbs-up"></i> --}}
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for=""> Message:</label>
+                                                    <textarea class="input" placeholder="Your review"
+                                                        name="content"></textarea>
+                                                </div>
+
+                                                <button class="primary-btn" type="submit">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            {{/each}}
+                        </tbody>
+
+
+
+                    </table>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- /row -->
+</div>
+<!-- /container -->
+</div>

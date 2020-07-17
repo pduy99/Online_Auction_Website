@@ -1,0 +1,148 @@
+{{#section 'WYSIWYG'}}
+<script
+    src="https://cdn.tiny.cloud/1/1t7sjbqh4n4m6d0kfprkd597forfz9bt36w9h0vhmd24hxag/tinymce/5/tinymce.min.js"></script>
+<script src="/js/seller/tinyMCESetup.js"></script>
+{{/section}}
+
+{{#section 'BID_UTILS'}}
+<script src="/js/bidder/bidder.utils.js"></script>
+<script src="/js/seller/seller.utils.js"></script>
+{{/section}}
+
+
+<div class="container" style="margin-bottom:40px">
+
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Bidder</a></li>
+                <li class="active">My Rating </li>
+            </ul>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-4">
+            <div class="section-title">
+                <h3 class="title">ĐIỂM ĐÁNH GIÁ</h3>
+            </div>
+            {{#each info}}
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-xs-12 col-md text-center rating-title">
+                        <h1 class="rating-num active">
+                            {{rating}} %</h1>
+                        <div class="review-rating rating-star">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o empty"></i>
+                        </div>
+                        {{!-- <div>
+                            <span class="glyphicon glyphicon-user rate-count"></span> 3 lượt
+                        </div> --}}
+                    </div>
+                    <div class="col-xs-12 col-md">
+                        <div class="row rating-desc">
+                            <div class="col-xs-3 col-md-4 text-right">
+                                <img alt=":thumbsup:" class="emoji" style="width: 35px;"
+                                    src="https://hackmd.io/build/emojify.js/dist/images/basic/thumbsup.png"
+                                    title="like">
+                            </div>
+                            <div class="col-xs-8 col-md-8">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                        aria-valuemin="0" aria-valuemax="100"
+                                        style="width: {{rating}}%;padding-top: 5px;">
+
+
+                                    </div>
+                                    <span class="content-count">{{like_count}} lần</span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-3 col-md-4 text-right">
+                                <img alt=":thumbsdown:" class="emoji" style="width: 35px;"
+                                    src="https://hackmd.io/build/emojify.js/dist/images/basic/thumbsdown.png"
+                                    title="unlike">
+                                <span>
+                            </div>
+                            <div class="col-xs-8 col-md-8">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                        aria-valuemin="0" aria-valuemax="100"
+                                        style="width: {{report_rate}}%;padding-top: 5px;">
+                                        <span class="content-count">{{report_count}} lần</span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end row -->
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+
+
+        </div>
+        <div class="col-md-8">
+            <div class="section-title">
+                <h3 class="title">ĐÁNH GIÁ VỀ TÔI</h3>
+            </div>
+            <div class="product-reviews">
+                {{#each feedbacks}}
+                <div class="single-review">
+                    <div class="review-heading">
+                        <div><a href="#"><i class="fa fa-user-o"></i> {{lastname}} {{firstname}}</a></div>
+                        <div><a href="#"><i class="fa fa-clock-o"></i>
+                                {{date_post}}
+                            </a></div>
+
+                    </div>
+                    <div class="review-body">
+
+                        <div class="row">
+                            <div class="col-md-1">
+                                {{#if isLike}}
+                                <div class="pull-right  rating-type-like">
+                                    <i class="fas fa-thumbs-up" style="font-size: 30px;"></i>
+                                </div>
+                                {{else}}
+                                <div class="pull-right  rating-type-dislike">
+                                    <i class="fas fa-thumbs-down" style="font-size: 30px;"></i>
+                                </div>
+                                {{/if}}
+
+                            </div>
+                            <div class="col-md-11 review-content">
+                                <p>{{content}}
+                                </p>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                {{/each}}
+
+
+                <ul class="reviews-pages">
+                    <li class="active">1</li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!-- /row -->
+</div>
+<!-- /container -->

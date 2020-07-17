@@ -1,0 +1,70 @@
+<div class="row px-5">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35 my-5">{{title}}</h3>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>Mã người dùng</th>
+                        <th>Tên người dùng</th>
+                        <th>Tên tài khoản</th>
+                        <th>Vai trò</th>
+                        <th>Yêu cầu</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="spacer"></tr>
+                    {{#each UserUpgrade}}
+                    <tr class="tr-shadow">
+                        <td>{{id}}</td>
+                        <td>{{firstname}} {{lastname}}</td>
+                        <td>{{username}}</td>
+                        <td>{{role}}</td>
+                        <td>{{upgrade}}</td>
+                        <td>
+                            {{!-- <div class="table-data-feature">
+                                <a class="item" data-toggle="modal" data-target="#upbiddertoseller{{id}}" data-placement="top" title="Nâng cấp"
+                                    href="#"
+                                    >
+                                    <i class="fas fa-angle-double-up"></i>
+                                </a>
+                            </div> --}}
+
+                            <div class="table-data-feature">
+                                <a class="item" data-toggle="tooltip" data-placement="top" title="Nâng cấp" href="/admin/userupgrade/upgrade?id={{id}}"
+                                    onclick="return confirm('Bạn chắc chắn muốn nâng cấp tài khoản: {{id}} - {{username}}?')">
+                                    <i class="fas fa-angle-double-up"></i>
+                                </a>
+                            </div>
+
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
+{{!-- {{#each UserUpgrade}}
+<div class="modal fade" id="upbiddertoseller{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">NÂNG CẤP TÀI KHOẢN</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Bạn chắc chắn muốn nâng cấp tài khoản: {{id}} - {{username}}?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" id="" href="/admin/userupgrade/upgrade?id={{id}}">OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}} --}}

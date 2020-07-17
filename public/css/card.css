@@ -1,0 +1,269 @@
+/* Phan card items */
+section.pricing {
+	background: #007bff;
+	background: linear-gradient(to right, #0062e6, #33aeff);
+}
+
+.pricing .card {
+	border: none;
+	border-radius: 1rem;
+	transition: all 0.2s;
+	box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.pricing hr {
+	margin: 1.5rem 0;
+}
+
+.pricing .card-title {
+	margin: 0.5rem 0;
+	font-size: 0.9rem;
+	letter-spacing: 0.1rem;
+	font-weight: bold;
+}
+
+.pricing .card-price {
+	font-size: 3rem;
+	margin: 0;
+}
+
+.pricing .card-price .period {
+	font-size: 0.8rem;
+}
+
+.pricing ul li {
+	margin-bottom: 1rem;
+}
+
+.pricing .text-muted {
+	opacity: 0.7;
+}
+
+.pricing .btn {
+	font-size: 80%;
+	border-radius: 5rem;
+	letter-spacing: 0.1rem;
+	font-weight: bold;
+	padding: 1rem;
+	opacity: 0.7;
+	transition: all 0.2s;
+}
+
+/* Hover Effects on Card */
+
+@media (min-width: 792px) {
+	.pricing .card:hover {
+		margin-top: -0.25rem;
+		margin-bottom: 0.25rem;
+		box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+	}
+	.pricing .card:hover .btn {
+		opacity: 1;
+	}
+}
+
+/* Countdown timer */
+.timer > div {
+	display: inline-block;
+	text-align: center;
+}
+
+.timer .num {
+	padding: 7px 3px;
+	display: block;
+	background-color: #212529;
+	min-width: 44px;
+	color: #fff;
+	font-size: 22px;
+	border-radius: 6px;
+	line-height: 1.2;
+	margin-left: 15px;
+}
+
+/* Phan hieu ung khi hover */
+/********************* shopping Demo-1 **********************/
+.product-grid {
+	font-family: Raleway, sans-serif;
+	text-align: center;
+	padding: 0 0 72px;
+	/* border: 1px solid rgba(0, 0, 0, 0.1); */
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+}
+.product-grid .product-image {
+	position: relative;
+	transition: all 0.3s ease 0s;
+}
+.product-grid .product-image a {
+	display: block;
+}
+.product-grid .product-image img {
+	width: 100%;
+	height: auto;
+}
+.product-grid .pic-1 {
+	opacity: 1;
+	transition: all 0.3s ease-out 0s;
+}
+.product-grid:hover .pic-1 {
+	opacity: 1;
+}
+.product-grid .pic-2 {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: all 0.3s ease-out 0s;
+}
+.product-grid:hover .pic-2 {
+	opacity: 1;
+}
+.product-grid .social {
+	width: 150px;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	opacity: 0;
+	transform: translateY(-50%) translateX(-50%);
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	z-index: 1;
+	transition: all 0.3s ease 0s;
+}
+.product-grid:hover .social {
+	opacity: 1;
+	top: 50%;
+}
+.social li {
+	display: inline-block;
+}
+.social li a {
+	color: #fff;
+	background-color: #333;
+	font-size: 16px;
+	line-height: 40px;
+	text-align: center;
+	height: 40px;
+	width: 40px;
+	margin: 0 2px;
+	display: block;
+	position: relative;
+	transition: all 0.3s ease-in-out;
+}
+.social li a:hover {
+	color: #fff;
+	background-color: #ef5777;
+}
+.social li a:after,
+.social li a:before {
+	content: attr(data-tip);
+	color: #fff;
+	background-color: #000;
+	font-size: 12px;
+	letter-spacing: 1px;
+	line-height: 20px;
+	padding: 1px 5px;
+	white-space: nowrap;
+	opacity: 0;
+	transform: translateX(-50%);
+	position: absolute;
+	left: 50%;
+	top: -30px;
+}
+.social li a:after {
+	content: '';
+	height: 15px;
+	width: 15px;
+	border-radius: 0;
+	transform: translateX(-50%) rotate(45deg);
+	top: -20px;
+	z-index: -1;
+}
+.social li a:hover:after,
+.social li a:hover:before {
+	opacity: 1;
+}
+.product-grid .product-discount-label,
+.product-grid .product-new-label {
+	color: #fff;
+	background-color: #ef5777;
+	font-size: 12px;
+	text-transform: uppercase;
+	padding: 2px 7px;
+	display: block;
+	position: absolute;
+	top: 10px;
+	left: 0;
+}
+.product-grid .product-discount-label {
+	background-color: #333;
+	left: auto;
+	right: 0;
+}
+.product-grid .rating {
+	color: #ffd200;
+	font-size: 12px;
+	padding: 12px 0 0;
+	margin: 0;
+	list-style: none;
+	position: relative;
+	z-index: -1;
+}
+.product-grid .rating li.disable {
+	color: rgba(0, 0, 0, 0.2);
+}
+.product-grid .product-content {
+	background-color: #fff;
+	text-align: center;
+	padding: 12px 0;
+	margin: 0 auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -27px;
+	z-index: 1;
+	transition: all 0.3s;
+}
+.product-grid:hover .product-content {
+	bottom: 0;
+}
+.product-grid .title {
+	font-size: 13px;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	text-transform: capitalize;
+	margin: 0 0 10px;
+	transition: all 0.3s ease 0s;
+}
+.product-grid .title a {
+	color: #828282;
+}
+.product-grid .title a:hover,
+.product-grid:hover .title a {
+	color: #ef5777;
+}
+.product-grid .price {
+	color: #333;
+	font-size: 17px;
+	font-family: Montserrat, sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.6px;
+	margin-bottom: 8px;
+	text-align: center;
+	transition: all 0.3s;
+}
+.product-grid .price span {
+	color: #999;
+	font-size: 13px;
+	font-weight: 400;
+	text-decoration: line-through;
+	margin-left: 3px;
+	display: inline-block;
+}
+.product-grid .add-to-cart {
+	color: #000;
+	font-size: 13px;
+	font-weight: 600;
+}

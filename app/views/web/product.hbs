@@ -1,0 +1,167 @@
+{{#section 'style'}}
+<script src="/js/util.js"></script>
+<link href="/css/card.css" rel="stylesheet" type="text/css">
+{{/section}}
+
+<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+				<div id="aside" class="col-md-3">
+					<!-- aside widget -->
+					{{#each ProTName}}
+					<div class="aside">
+						<h3 class="aside-title">PRODUCT TYPE:<i>{{protype_name}}</i></h3>
+						<div class="product-thumb">
+								<img src="https://images-na.ssl-images-amazon.com/images/I/51+vTuZ5IeL._AC_SL_QL70_.jpg" alt="">
+							</div>
+					</div>
+					{{/each}}
+					
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- MAIN -->
+				<div id="main" class="col-md-9">
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="row-filter">
+								<a href="#"><i class="fa fa-th-large"></i></a>
+								<a href="#" class="active"><i class="fa fa-bars"></i></a>
+							</div>
+							<div class="sort-filter">
+								<span class="text-uppercase">Sort By:</span>
+								<select class="input" id="inputsort">
+										<option value=0>Thời gian kết thúc</option>
+										<option value=1>Giá tăng dần</option>
+								</select>
+								<a href="#" class="main-btn icon-btn" id="buttonorder"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">Show:</span>
+								<select class="input">
+										<option value="0">10</option>
+										<option value="1">20</option>
+										<option value="2">30</option>
+									</select>
+							</div>
+							<ul class="store-pages" id="productpage">
+								<li><span class="text-uppercase">Page:</span></li>
+								{{!-- <li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li> --}}
+							</ul>
+						</div>
+					</div>
+					<!-- /store top filter -->
+
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row" id="rowproduct">
+						{{#each Pro4}}
+						<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6 " data-price='{{initial_price}}' data-endate='{{expriry_date}}'>
+								<div class="product product-single">
+									<div class="product-thumb">
+										<div class="product-label" >
+											<span id= time{{id}} start_date={{start_date}}>
+												<script>
+													transferDateFormat(`{{start_date}}`, {{ id }});
+												</script>
+											</span>
+										</div>
+										<a href="/product/productdetail/{{id}}" class=" main-btn quick-view">Detail</a>
+										<img src="/img/sp/{{id}}.jpg" alt="">
+										<ul class="product-countdown" id={{id}} expriry_date={{expriry_date}}>
+											<script>
+												console.log(`{{ expriry_date }}`);
+												countDownTimer(`{{ expriry_date }}`, {{ id }});
+													// countDownTimer('Mon Nov 1 2018 14:59:38 GMT+0700 (Indochina Time)', 'Mon Nov 13 2019 14:59:38 GMT+0700 (Indochina Time)', '1');
+											</script>
+										</ul>
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">${{initial_price}}</h3>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o empty"></i>
+										</div>
+										<h2 class="product-name"><a href="#">{{product_name}}</a></h2>
+										<div class="">
+												<p>
+													<i class="fas fa-trophy grey-text pr-2"></i> Trinh Tan Tai |
+													<i class="fas fa-users fa-lg text-info pr-2"> </i> 33 bidders
+												</p>
+												<p>Buy now: <strong>{{imme_buy_price}}</strong></p>
+										</div>
+										<div class="product-btns">
+											<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+											<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+											<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>BID NOW</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Single -->
+						{{/each}}
+						</div>
+						<!-- /row -->
+					</div>
+					<!-- /STORE -->
+
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="row-filter">
+								<a href="#"><i class="fa fa-th-large"></i></a>
+								<a href="#" class="active"><i class="fa fa-bars"></i></a>
+							</div>
+							<div class="sort-filter">
+								<span class="text-uppercase">Sort By:</span>
+								<select class="input">
+									<div class="sort">
+										<option value=0>Thời gian kết thúc</option>
+										<option value=1>Giá tăng dần</option>
+									</div>
+										
+								</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">Show:</span>
+								<select class="input">
+										<option value="0">10</option>
+										<option value="1">20</option>
+										<option value="2">30</option>
+									</select>
+							</div>
+							<ul class="store-pages" id="productpage">
+								<li><span class="text-uppercase">Page:</span></li>
+								{{!-- <li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li> --}}
+							</ul>
+						</div>
+					</div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->

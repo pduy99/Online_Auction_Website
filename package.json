@@ -1,0 +1,45 @@
+{
+	"name": "ptudwcuoiki_onlineauction",
+	"version": "1.0.0",
+	"description": "Đồ án cuối kì Phát triển ứng dụng Web CQ2017/31 :  SÀN ĐẤU GIÁ TRỰC TUYẾN",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://gitlab.com/NoRaDoMi/ptudwcuoiki_onlineauction.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://gitlab.com/NoRaDoMi/ptudwcuoiki_onlineauction/issues"
+	},
+	"homepage": "https://gitlab.com/NoRaDoMi/ptudwcuoiki_onlineauction#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"connect-flash": "^0.1.1",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-handlebars": "^3.1.0",
+		"express-handlebars-sections": "^1.0.1",
+		"express-session": "^1.17.0",
+		"express-validator": "^5.3.1",
+		"http-errors": "^1.7.3",
+		"jquery-datetimepicker": "^2.5.21",
+		"multer": "^1.4.2",
+		"mysql": "^2.17.1",
+		"mysql2": "^2.0.2",
+		"nodemailer": "^6.4.2",
+		"passport": "^0.4.0",
+		"passport-facebook": "^3.0.0",
+		"passport-local": "^1.0.0",
+		"request": "^2.88.0",
+		"sequelize": "^5.21.2",
+		"sweetalert2": "^9.5.3"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.1"
+	}
+}

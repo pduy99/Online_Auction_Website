@@ -1,0 +1,113 @@
+{{#section 'WYSIWYG'}}
+<script
+    src="https://cdn.tiny.cloud/1/1t7sjbqh4n4m6d0kfprkd597forfz9bt36w9h0vhmd24hxag/tinymce/5/tinymce.min.js"></script>
+<script src="/js/seller/tinyMCESetup.js"></script>
+{{/section}}
+
+
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <tr class="order-summary clearfix">
+                    <div class="section-title">
+                        <h3 class="title">Các sản phẩm đang đăng và còn thời hạn</h3>
+                    </div>
+
+                    <table class="shopping-cart-table table">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th></th>
+                                <th class="text-center">Giá hiện tại</th>
+                                <th class="text-center">Số lượt ra giá</th>
+                                <th class="text-center">Người thắng hiện tại</th>
+                                <th class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each myProducts}}
+                            <tr class="check_out">
+                                <td class="thumb"><img src="/img/sp/{{id}}.jpg" alt=""></td>
+                                <td class="details">
+                                    <a href="/product/productdetail/{{id}}">{{product_name}}</a>
+                                    <ul>
+                                        <li><span>Giá khởi tạo: {{initial_price}}</span></li>
+                                        <li><span>Giá mua ngay: {{imme_buy_price}}</span></li>
+                                    </ul>
+                                </td>
+                                <td class="price text-center"><strong class="primary-color">{{curr_price}}</strong></td>
+                                <td class="qty text-center"><input class="input" type="number" value="{{countBids}}"
+                                        readonly>
+                                </td>
+                                <td class="total text-center"><strong>{{winnerName}}</strong></td>
+                                {{!-- <td class="text-right"><button class="main-btn icon-btn"><i
+                                            class="fa fa-close"></i></button></td> --}}
+                                <td class="text-right">
+                                    <button class="main-btn icon-btn" style="width: auto; padding:0 10px" type="button"
+                                        data-toggle="collapse" data-target="#{{id}}" aria-expanded="false"
+                                        aria-controls="collapseExample"><i class="fas fa-edit"></i>
+                                        Chỉnh sửa mô tả
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="6" class="hiddenRow product-tab">
+                                    <div class="accordian-body collapse" id="{{id}}">
+                                        <ul class="tab-nav">
+                                            <li class="active"><a data-toggle="tab" href="#tab1">Description</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="tab1" class="tab-pane fade in active">
+                                                <form action='/seller/{{id}}/description/edit' method="post">
+                                                    <div class="form-group">
+                                                        <label for="a">Nội dung cũ</label>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">{{{description}}}</div>
+                                                        </div>
+                                                        <small id="emailHelp" class="form-text text-muted">*Bạn chỉ có
+                                                            thể thêm nội dung mới vào description, không được sửa
+                                                            nội dung cũ.</small>
+                                                    </div>
+                                                    <textarea class="full-featured-non-premium" rows="4"
+                                                        name="product_description" required="required">
+                                                    </textarea>
+                                                    <div class="pull-right" style="margin: 10px 0">
+                                                        <button class="primary-btn" type="submit">Submit </button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+
+
+
+                    </table>
+                    <ul class="store-pages" id="checkout">
+                        <li><span class="text-uppercase">No :</span></li>
+                        {{!-- <li class="active">1</li>
+											<li><a href="#">2</a></li>
+											<li><a href="#">3</a></li>
+											<li><a href="#"><i class="fa fa-caret-right"></i></a></li> --}}
+                    </ul>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- /row -->
+</div>
+<!-- /container -->
+</div>

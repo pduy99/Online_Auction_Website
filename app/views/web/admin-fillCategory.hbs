@@ -1,0 +1,13 @@
+<div class="row px-5">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35 my-5">{{title}}</h3>
+        <div class="table-responsive table-responsive-data2">
+            <form method="post">
+                <input class="pl-1 w-25" type="text" name="cat_name" placeholder="Nhập tên danh mục" value="{{#each C}}{{cat_name}}{{/each}}" autofocus>
+                <input type="submit" name="addCategory" value="Xác nhận">
+            </form>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>

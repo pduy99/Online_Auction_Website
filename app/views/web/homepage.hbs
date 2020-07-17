@@ -1,0 +1,383 @@
+{{#section 'style'}}
+<script src="/js/util.js"></script>
+{{/section}}
+
+{{#section 'WATCHLIST'}}
+<script src="/js/watchlist.utils.js"></script>
+{{/section}}
+
+
+<!-- HOME -->
+<div id="home">
+	<!-- container -->
+	<div class="container">
+		<!-- home wrap -->
+		<div class="home-wrap">
+			<!-- home slick -->
+			<div id="home-slick">
+				<!-- banner -->
+				<div class="banner banner-1">
+					<img src="https://laptophot.vn/wp-content/uploads/2019/07/banner.jpg" alt="" height="490">
+					<div class="banner-caption text-center">
+						<h1 class="white-color">Thiết bị điện tử</h1>
+						<h3 class="white-color font-weak"></h3>
+						<button class="primary-btn">Khám phá ngay</button>
+					</div>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="banner banner-1">
+					<img src="/img/banner02.jpg" alt="">
+					<div class="banner-caption">
+						<h1 class="primary-color">Và<br><span class="white-color font-weak">nhiều cái khác</span>
+						</h1>
+						<button class="primary-btn">Mua ngay</button>
+					</div>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="banner banner-1">
+					<img src="https://didongviet.vn/blog/wp-content/uploads/2018/08/man-hinh-galaxy-s8-didongviet.jpg"
+						alt="" height="490">
+					<div class="banner-caption">
+						<h1 class="white-color">Thiết bị <span>thông minh</span></h1>
+						<button class="primary-btn">Bid ngay</button>
+					</div>
+				</div>
+				<!-- /banner -->
+			</div>
+			<!-- /home slick -->
+		</div>
+		<!-- /home wrap -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /HOME -->
+
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- banner -->
+			<div class="col-md-4 col-sm-6">
+				<a class="banner banner-1" href="#">
+					<img src="https://ibid.modeltheme.com/shop-only/wp-content/uploads/2018/09/masonry-banner111-1024x466.jpg"
+						alt="" height="229.56">
+					<div class="banner-caption text-center">
+						<h1 class="white-color">BID</h1>
+					</div>
+				</a>
+			</div>
+			<!-- /banner -->
+
+			<!-- banner -->
+			<div class="col-md-4 col-sm-6">
+				<a class="banner banner-1" href="#">
+					<img src="https://ibid.modeltheme.com/shop-only/wp-content/uploads/2018/09/masonry-banner444-1-1024x466.jpg"
+						alt="" height="229.56">
+					{{!-- <h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span>
+					</h1> --}}
+					<div class="banner-caption text-center">
+						<h1 class="white-color">BUY</h1>
+					</div>
+				</a>
+			</div>
+			<!-- /banner -->
+
+			<!-- banner -->
+			<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
+				<a class="banner banner-1" href="#">
+					<img src="https://ibid.modeltheme.com/shop-only/wp-content/uploads/2018/09/masonry-banner222-1-1024x653.jpg"
+						alt="">
+					<div class="banner-caption text-center">
+						<h1 class="white-color">FUN</h1>
+					</div>
+				</a>
+			</div>
+			<!-- /banner -->
+
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->
+
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- section-title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h2 class="title">Sắp kết thúc</h2>
+					<div class="pull-right">
+						<div class="product-slick-dots-1 custom-dots"></div>
+					</div>
+				</div>
+			</div>
+			<!-- /section-title -->
+			<!-- Product Slick -->
+			<div class="col-md-12 col-sm-6 col-xs-6">
+				<div class="row">
+					<div id="product-slick-1" class="product-slick">
+
+						{{#each Pro2}}
+						<!-- Product Single -->
+						<div class="product product-single">
+							<div class="product-thumb">
+								<div class="product-label">
+
+									<span id="time{{id}}NEARLYENDED" start_date="{{start_date}}">
+										<script>
+											transferDateFormat(`{{start_date}}`, `time{{id}}NEARLYENDED`);
+										</script>
+									</span>
+									{{!-- <span class="sale text-center">New</span> --}}
+								</div>
+								<ul class="product-countdown" id="{{id}}NEARLYENDED" expriry_date="{{expriry_date}}">
+									<script>
+
+										countDownTimer(`{{ expriry_date }}`, `{{ id }}NEARLYENDED`);
+									</script>
+								</ul>
+
+								<a href="/product/productdetail/{{id}}" class=" main-btn quick-view">Chi tiết</a>
+								<img src="/img/sp/{{id}}.jpg" alt="" width="263" height="263">
+							</div>
+							<div class="product-body">
+
+								<p class="align-self-end ">
+									Giá hiện tại:
+								</p>
+
+								<h3 class="product-price">{{curr_price}} K</h3>
+								<div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o empty"></i>
+								</div>
+								<h2 class="product-name"><a href="#">{{product_name}}</a></h2>
+								<div class="">
+									<p>
+										<i class="fas fa-gavel text-info"></i> </i>
+										{{countBidders}} lượt
+										<span>&nbsp;&nbsp;</span>
+										{{#if isWinned}}
+										<i class="fas fa-trophy " style="margin-left: 10px; color:grey;"></i>
+										{{winnerName}}
+
+										{{/if}}
+									</p>
+									<p>Mua ngay: <strong>{{imme_buy_price}} K</strong></p>
+								</div>
+								<div class="product-btns">
+
+									<i class="fa fa-heart main-btn icon-btn" onclick="actOnPro(event);"
+										data-pro-id="{{id}}" data-islike="false">
+									</i>
+
+									<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>&nbsp
+										Ra giá</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- /Product Single -->
+						{{/each}}
+
+
+					</div>
+				</div>
+			</div>
+			<!-- /Product Slick -->
+		</div>
+		<!-- /row -->
+
+		<!-- row -->
+		<div class="row">
+			<!-- section-title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h2 class="title">Được đấu giá nhiều nhất</h2>
+					<div class="pull-right">
+						<div class="product-slick-dots-2 custom-dots"></div>
+					</div>
+				</div>
+			</div>
+			<!-- /section-title -->
+			<!-- Product Slick -->
+			<div class="col-md-12 col-sm-6 col-xs-6">
+				<div class="row">
+					<div id="product-slick-2" class="product-slick">
+						{{#each Pro4}}
+						<!-- Product Single -->
+						<div class="product product-single">
+							<div class="product-thumb">
+								<div class="product-label">
+
+									<span id="time{{id}}TOPBIDDED" start_date={{start_date}}>
+										<script>
+											transferDateFormat(`{{start_date}}`, `time{{id}}TOPBIDDED`);
+										</script>
+									</span>
+									{{!-- <span class="sale text-center">New</span> --}}
+								</div>
+								<ul class="product-countdown" id="{{id}}TOPBIDDED" expriry_date="{{expriry_date}}">
+									<script>
+
+										countDownTimer(`{{ expriry_date }}`, `{{ id }}TOPBIDDED`);
+									</script>
+								</ul>
+
+								<a href="/product/productdetail/{{id}}" class=" main-btn quick-view">Detail</a>
+								<img src="/img/sp/{{id}}.jpg" alt="" width="263" height="263">
+							</div>
+							<div class="product-body">
+
+								<p class="align-self-end ">
+									Giá hiện tại:
+								</p>
+
+								<h3 class="product-price">{{curr_price}} K</h3>
+								<div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o empty"></i>
+								</div>
+								<h2 class="product-name"><a href="#">{{product_name}}</a></h2>
+								<div class="">
+									<p>
+										<i class="fas fa-gavel text-info"></i> </i>
+										{{countBidders}} lượt
+										<span>&nbsp;&nbsp;</span>
+										{{#if isWinned}}
+										<i class="fas fa-trophy " style="margin-left: 10px; color:grey;"></i>
+										{{winnerName}}
+
+										{{/if}}
+									</p>
+									<p>Mua ngay: <strong>{{imme_buy_price}} K</strong></p>
+								</div>
+								<div class="product-btns">
+
+									<i class="fa fa-heart main-btn icon-btn" onclick="actOnPro(event);"
+										data-pro-id="{{id}}" data-islike="false">
+									</i>
+
+									<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>&nbsp
+										Ra giá</button>
+								</div>
+							</div>
+						</div>
+						<!-- /Product Single -->
+						{{/each}}
+
+					</div>
+				</div>
+			</div>
+			<!-- /Product Slick -->
+		</div>
+		<!-- /row -->
+
+		<!-- row -->
+		<div class="row">
+			<!-- section-title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h2 class="title">Giá cao nhất</h2>
+					<div class="pull-right">
+						<div class="product-slick-dots-3 custom-dots"></div>
+					</div>
+				</div>
+			</div>
+			<!-- /section-title -->
+			<!-- Product Slick -->
+			<div class="col-md-12 col-sm-6 col-xs-6">
+				<div class="row">
+					<div id="product-slick-3" class="product-slick">
+						{{#each Pro6}}
+						<!-- Product Single -->
+						<div class="product product-single">
+							<div class="product-thumb">
+								<div class="product-label">
+
+									<span id="time{{id}}HIGHESTPRICE" start_date={{start_date}}>
+										<script>
+											transferDateFormat(`{{start_date}}`, `time{{id}}HIGHESTPRICE`);
+										</script>
+									</span>
+									{{!-- <span class="sale text-center">New</span> --}}
+								</div>
+								<ul class="product-countdown" id="{{id}}HIGHESTPRICE" expriry_date="{{expriry_date}}">
+									<script>
+
+										countDownTimer(`{{ expriry_date }}`, `{{ id }}HIGHESTPRICE`);
+									</script>
+								</ul>
+
+								<a href="/product/productdetail/{{id}}" class=" main-btn quick-view">Chi tiết</a>
+								<img src="/img/sp/{{id}}.jpg" alt="" width="263" height="263">
+							</div>
+							<div class="product-body">
+
+								<p class="align-self-end ">
+									Giá hiện tại :
+								</p>
+
+								<h3 class="product-price">{{curr_price}} K</h3>
+								<div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o empty"></i>
+								</div>
+								<h2 class="product-name"><a href="#">{{product_name}}</a></h2>
+								<div class="">
+									<p>
+										<i class="fas fa-gavel text-info"></i> </i>
+										{{countBidders}} lượt
+										<span>&nbsp;&nbsp;</span>
+										{{#if isWinned}}
+										<i class="fas fa-trophy " style="margin-left: 10px; color:grey;"></i>
+										{{winnerName}}
+
+										{{/if}}
+									</p>
+									<p>Mua ngay: <strong>{{imme_buy_price}} K</strong></p>
+								</div>
+								<div class="product-btns">
+
+									<i class="fa fa-heart main-btn icon-btn" onclick="actOnPro(event);"
+										data-pro-id="{{id}}" data-islike="false">
+									</i>
+
+									<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>&nbsp Ra
+										giá</button>
+								</div>
+							</div>
+						</div>
+						<!-- /Product Single -->
+						{{/each}}
+					</div>
+				</div>
+			</div>
+			<!-- /Product Slick -->
+		</div>
+		<!-- /row -->
+
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->

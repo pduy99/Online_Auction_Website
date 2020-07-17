@@ -1,0 +1,47 @@
+<div class="row px-5">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35 my-5">{{title}}</h3>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá khởi điểm</th>
+                        <th>Giá mua ngay</th>
+                        <th>Bước giá</th>
+                        <th>Thời gian đáu giá</th>
+                        {{!-- <th>Status</th> --}}
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="spacer"></tr>
+                    {{#each Products}}
+                    <tr class="tr-shadow">
+                        <td>{{id}}</td>
+                        <td>{{product_name}}</td>
+                        <td>{{initial_price}}</td>
+                        <td>{{imme_buy_price}}</td>
+                        <td>{{step_cost}}</td>
+                        <td>{{start_date}} - {{expriry_date}}</td>
+                        {{!-- <td>{{status}}</td> --}}
+                        <td>
+                            <div class="table-data-feature">
+                                <a class="item" data-toggle="tooltip" data-placement="top" title="Xóa"
+                                    href="/admin/product/delete?id={{id}}"
+                                    onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm: {{id}} - {{product_name}}?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>

@@ -1,0 +1,104 @@
+{{#section 'style'}}
+<script src="/js/util.js"></script>
+<link href="/css/card.css" rel="stylesheet" type="text/css">
+{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> --}}
+{{!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> --}}
+{{/section}}
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="order-summary clearfix">
+					<div class="section-title">
+						<h3 class="title">{{TITLE}}</h3>
+					</div>
+					<table class="shopping-cart-table table">
+						<thead>
+							<tr>
+								<th>SẢN PHẨM</th>
+								<th></th>
+								<th class="text-center">GÍA HIỆN TẠI</th>
+								<th class="text-center">GIÁ KHỞI ĐIỂM</th>
+								<th class="text-center">MUA NGAY</th>
+								<th class="text-center">NGƯỜI BÁN</th>
+								<th class="text-right"></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each WatchList}}
+							<tr>
+								<td class="thumb"><img src="/img/sp/{{PID}}.jpg" alt=""></td>
+								<td class="details">
+									<a href="/product/productdetail/{{PID}}">{{product_name}}</a>
+								</td>
+								<td class="price text-center"><strong class="primary-color">{{curr_price}}</strong></td>
+								<td class="total text-center"><strong>{{initial_price}}</strong></td>
+								<td class="total text-center"><strong>{{imme_buy_price}}</strong></td>
+								<!-- Button to Open the Modal -->
+								<td class="total text-center"><strong><a href="#" data-toggle="modal"
+											data-target="#">
+											{{LNAME}}
+										</a></strong></td>
+
+								<!-- Modal -->
+								<div class="modal fade" id="SellerModalCenter" tabindex="-1" role="dialog"
+									aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLongTitle">DANH GIA SELLER</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="review-heading">
+													<div><a href="#"><i class="fa fa-user-o"></i> Seller</a></div>
+													<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0
+															PM</a></div>
+												</div>
+												<div class="review-body">
+													<p>THONG TIN NGUOI BAN DAT O DAY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+													<p><strong>Point: </strong> 9 </p>
+													<button type="button" class="btn btn-primary" id="buttonaddpoint"><i
+															class="fas fa-thumbs-up"></i></button>
+													<button type="button" class="btn btn-secondary"
+														id="buttonminuspoint"><i
+															class="fas fa-thumbs-down"></i></button>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-primary">DANH GIA</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								{{!-- -- END MODAL -- --}}
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+		<!-- /row -->
+
+
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

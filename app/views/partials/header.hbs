@@ -1,0 +1,137 @@
+<!-- HEADER -->
+<header>
+
+
+    <!-- header -->
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a class="logo" href="/">
+                        <img src="/img/logo.png" alt="">
+                    </a>
+                </div>
+                <!-- /Logo -->
+
+                <!-- Search -->
+                <div class="header-search">
+                    <form action="/product/search" method="get">
+                        <input class="input search-input" name="q" type="text" placeholder="TỪ KHOÁ TÌM KIẾM"
+                            value={{query}}>
+                        <select class="input search-categories" name="selcat">
+                            <option value="0">Tất cả mục</option>
+
+                            {{#each Cat}}
+                            {{#if hasChildCates}}
+                            {{#each childCates}}
+                            <option value={{id}}>{{protype_name}}</option>
+                            {{/each}}
+
+                            {{/if}}
+
+                            {{/each}}
+                            {{#each PTNotParent}}
+                            <option value={{id}}>{{protype_name}}</option>
+                            {{/each}}
+                        </select>
+                        <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- /Search -->
+            </div>
+            <div class="pull-right">
+
+                <!-- Account -->
+                {{#each user}}
+                {{#if isloggedin}}
+
+                <ul class="header-btns">
+
+                    <li class="header-account dropdown default-dropdown">
+                        <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+
+                            <div class="header-btns-icon">
+                                <i class="fa fa-user-o"></i>
+                            </div>
+                            <strong class="text-uppercase">XIN CHÀO, <i class="fa fa-caret-down"></i></strong>
+                            <div>
+                                <span>{{firstname}}</span>
+                            </div>
+
+                        </div>
+
+                        <ul class="custom-menu" style="width: 210px;">
+
+                        </ul>
+                    </li>
+
+                    {{else}}
+                    <div class="btn-auth">
+                        <div>
+                            <a href="/auth/register" class=" signup">Đăng kí</a>
+
+                            <a href="/auth/login" class=" login">Đăng nhập</a>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/each}}
+
+                    <script>
+                        if (document.getElementsByClassName('custom-menu')[0] != undefined) {
+                            document.getElementsByClassName('custom-menu')[0].innerHTML = `
+                            <li><a href="/account"><i class="fa fa-user-o"></i> Tài Khoản Của Tôi</a></li>
+                                {{#if isBidder}}
+                        <li><a href="/bidders/watchlist"><i class="fa fa-heart-o"></i>Watchlists</a></li>
+                                <li><a href="/bidders/mybid"><i class="fas fa-gavel"></i> Danh sách Đấu Giá</a></li>
+                                <li><a href="/bidders/mywinningproduct"><i class="fa fa-trophy" aria-hidden="true"></i>Danh
+                                        sách Đã Thắng</a></li>
+                                <li><a href="/bidders/feedbacks"><i class="fas fa-comments">
+
+                                        </i>Feedbacks</a></li>
+                             {{/if}}
+
+                                <li><a href="/auth/logout"><i class="fas fa-sign-out-alt"></i>Đăng Xuất</a></li>`;
+                        }
+
+                    </script>
+
+
+
+                    <!-- Mobile nav toggle-->
+                    <li class="nav-toggle">
+                        <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                    </li>
+                    <!-- / Mobile nav toggle -->
+                </ul>
+            </div>
+        </div>
+        <!-- header -->
+    </div>
+    <!-- container -->
+</header>
+<!-- /HEADER -->
+<!-- Modal -->
+{{#if isBidder}}
+<div class="modal fade" id="upgradeaccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">UPGRADE ACCOUNT</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">BẠN CÓ CHẮC LÀ MUỐN LÊN SELLER ?.</div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" id="upgradebiddertosellerbutton" href="#" data-dismiss="modal">OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+{{!-- -- END MODAL -- --}}
